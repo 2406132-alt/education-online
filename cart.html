@@ -1,0 +1,19 @@
+<h1>My Cart</h1>
+<div id="cart"></div>
+
+<script>
+fetch("http://localhost:3000/api/cart/1")
+.then(r=>r.json())
+.then(data=>{
+  let html="";
+  data.items.forEach(i=>{
+    html+=`
+      <p>${i.name} x ${i.qty} 
+      Discount ${i.discount_percent}% 
+      Total ${i.line_total}</p>`;
+  });
+
+  html+=`<h2>Total: ${data.total}</h2>`;
+  document.getElementById("cart").innerHTML=html;
+});
+</script>
